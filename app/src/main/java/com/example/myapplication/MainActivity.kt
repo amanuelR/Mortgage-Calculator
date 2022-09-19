@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
     fun modifyData(view: View) {
-        val myIntent = Intent(this, Mortgage::class.java)
+        val myIntent = Intent(this, DataActivity::class.java)
         this.startActivity(myIntent)
     }
 }
