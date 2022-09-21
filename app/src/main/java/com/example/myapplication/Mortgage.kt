@@ -2,18 +2,13 @@ package com.example.myapplication
 
 import java.text.DecimalFormat
 
-class Mortgage {
+object Mortgage {
     val MONEY: DecimalFormat = DecimalFormat("$#,##0.00")
 
     private var amount = 0f
     private var years = 0
     private var rate = 0f
 
-    fun Mortgage() {
-        setAmount(100000.0f)
-        setYears(30)
-        setRate(0.035f)
-    }
 
     fun setAmount(newAmount: Float) {
         if (newAmount >= 0) amount = newAmount
