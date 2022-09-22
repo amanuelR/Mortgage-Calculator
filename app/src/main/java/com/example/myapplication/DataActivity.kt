@@ -8,7 +8,7 @@ import com.example.myapplication.databinding.ActivityDataBinding
 class DataActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDataBinding
     private var mortgage: Mortgage = Mortgage()
-    val p = Prefs(this)
+    private val p = Prefs(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

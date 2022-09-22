@@ -10,7 +10,7 @@ import com.example.myapplication.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    val pf:Prefs = Prefs(this)
+    private val pf:Prefs = Prefs(this)
     var mortgage = Mortgage()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,10 +33,7 @@ class MainActivity : AppCompatActivity() {
 
         var amountString = mortgage.getFormattedAmount().toString()
         var yearsString = mortgage.getYears().toString()
-
         var rateString = String.format("%.1f",(mortgage.getRate() * 100)) + "%"
-
-
         var monthlyPaymentString = mortgage.formattedMonthlyPayment()
         var totalPaymentString = mortgage.formattedTotalPayment()
 
