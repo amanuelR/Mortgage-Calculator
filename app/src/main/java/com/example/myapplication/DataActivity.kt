@@ -1,21 +1,50 @@
 package com.example.myapplication
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.databinding.ActivityDataBinding
-import com.example.myapplication.databinding.ActivityMainBinding
 
 class DataActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
-    private lateinit var bindingData: ActivityDataBinding
+    private lateinit var binding: ActivityDataBinding
+    private var mortgage: Mortgage = Mortgage()
+    val p = Prefs(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        bindingData = ActivityDataBinding.inflate(layoutInflater)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(bindingData.root);
+        binding = ActivityDataBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        setText(mortgage)
+    }
+
+    override fun onStart()  {
+        super.onStart()
+
+        p.getPreferences(mortgage)
+
+        setText(mortgage)
+    }
+
+    fun setText(mortgage: Mortgage)   {
+
+        var amountString = mortgage.getAmount().toString()
+        var rateString = mortgage.getRate().toString()
+
+        binding.dataAmount.setText(amountString)
+        binding.dataRate.setText(rateString)
+
+        if(mortgage.getYears() == 10)    {
+            binding.ten.isChecked = true
+        }
+
+        else if(mortgage.getYears() == 15)   {
+            binding.fifteen.isChecked = true
+        }
+
+        else if(mortgage.getYears() == 30)   {
+            binding.thirty.isChecked = true
+        }
+
     }
 
     fun goBack(v: View?) {
@@ -24,34 +53,30 @@ class DataActivity : AppCompatActivity() {
     }
 
     fun updateMortgageObject()
-    { val p = Prefs(this)
-        val amountET = bindingData.dataAmount
-        val rb10 = bindingData.ten
-        val rb15 = bindingData.fifteen
-        var years = 30
+    {
+        val amountET = binding.dataAmount
+        val rb10 = binding.ten
+        val rb15 = binding.fifteen
 
+        var years = 30
         if (rb10.isChecked)
             years = 10
         else if (rb15.isChecked)
             years = 15
+        mortgage.setYears(years)
 
-        Mortgage.setYears(years)
-        val rateET = bindingData.dataRate
+        val rateET = binding.dataRate
         val rateString:String = rateET.getText().toString()
         val amountString = amountET.text.toString()
-        Log.d("KUPAL", amountString)
-        binding.amount.text = amountString
-        Log.d("KUPAL", binding.amount.text.toString())
         try {
             val amount = amountString.toFloat()
-            Mortgage.setAmount(amount)
-            Log.d("KUPALMort", Mortgage.getFormattedAmount().toString())
+            mortgage.setAmount(amount)
             val rate: Float = rateString.toFloat()
-            Mortgage.setRate(rate)
-            p.setPreferences(Mortgage)
+            mortgage.setRate(rate)
+            p.setPreferences(mortgage)
         } catch (nfe: NumberFormatException) {
-            Mortgage.setAmount(100000.0f)
-            Mortgage.setRate(.035f)
+            mortgage.setAmount(100000.0f)
+            mortgage.setRate(.035f)
         }
     }
 }
