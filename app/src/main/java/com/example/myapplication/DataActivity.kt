@@ -50,6 +50,7 @@ class DataActivity : AppCompatActivity() {
     fun goBack(v: View?) {
         updateMortgageObject()
         finish()
+        overridePendingTransition(R.anim.fade_in_and_scale, R.anim.slide_to_left)
     }
 
     fun updateMortgageObject()

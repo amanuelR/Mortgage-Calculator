@@ -5,7 +5,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import com.example.myapplication.databinding.ActivityMainBinding
 
@@ -51,8 +50,7 @@ class MainActivity : AppCompatActivity() {
     fun modifyData(view: View) {
         val myIntent = Intent(this, DataActivity::class.java)
         this.startActivity(myIntent)
-        Log.d("InMain", mortgage.getFormattedAmount().toString())
         var s: SharedPreferences? = this!!.getSharedPreferences("Mortgage", Context.MODE_PRIVATE)
-        Log.d("InMain", s?.all.toString())
+        overridePendingTransition(R.anim.slide_from_left, R.anim.fade_out_and_scale)
     }
 }

@@ -26,7 +26,6 @@ class Prefs (context1: Context) {
             editor.putFloat("PREFERENCE_RATE", mort.getRate())
         }
         editor?.apply()
-        Log.d("InPrefs", s?.all.toString())
     }
     fun getPreferences(mort: Mortgage) {
         var s: SharedPreferences? = context!!.getSharedPreferences("Mortgage", Context.MODE_PRIVATE)
