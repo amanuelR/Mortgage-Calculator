@@ -49,12 +49,12 @@
         android:id="@+id/data_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/label_amount"
         android:layout_alignLeft="@+id/data_rate"
+        android:layout_alignBottom="@+id/label_amount"
         android:layout_alignParentRight="true"
         android:layout_toRightOf="@+id/label_amount"
-        android:text="@string/amountDecimal"
-        android:inputType="numberDecimal" />
+        android:inputType="numberDecimal"
+        android:text="@string/amountDecimal" />
 
     <TextView
         android:id="@+id/label_rate"
@@ -70,10 +70,10 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/label_rate"
         android:layout_alignParentRight="true"
-        android:layout_toRightOf="@+id/label_rate"
         android:layout_marginLeft="10dp"
-        android:text="@string/rateDecimal"
-        android:inputType="numberDecimal" />
+        android:layout_toRightOf="@+id/label_rate"
+        android:inputType="numberDecimal"
+        android:text="@string/rateDecimal" />
 
     <Button
         android:layout_width="wrap_content"
